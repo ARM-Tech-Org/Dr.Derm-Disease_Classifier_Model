@@ -17,7 +17,7 @@
 #     'Seborrheic Keratoses and other Benign Tumors',
 #     'Tinea Ringworm Candidiasis and other Fungal Infections',
 #     'Warts Molluscum and other Viral Infections'
-# ]
+#
 #
 # def read_image(image_encoded):
 #     """Read an image from the encoded file."""

@@ -181,6 +181,7 @@ from inference_sdk import InferenceHTTPClient
 import cv2
 from PIL import Image
 from io import BytesIO
+import numpy as np
 
 app = FastAPI()
 
@@ -238,11 +239,13 @@ async def beautyface(file: UploadFile = File(...)):
     # Read the uploaded image
     image_data = await file.read()
 
+    # Convert the image bytes to a NumPy array
+    image = np.frombuffer(image_data, np.uint8)
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+
     # Infer with the object detection model
-    image = read_image(image_data)
     result = CLIENT.infer(file.filename, model_id="beauty_face/3")
     predictions = result["predictions"]
-
     # Draw bounding boxes on the image
     def draw_bounding_boxes(image, predictions):
         for pred in predictions:

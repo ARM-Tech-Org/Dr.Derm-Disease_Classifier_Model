@@ -190,10 +190,19 @@ model_path = os.path.join(os.path.dirname(__file__), "disease_classifier.joblib"
 model = joblib.load(model_path)
 
 # Initialize the inference client for object detection (beauty face detection)
+# CLIENT = InferenceHTTPClient(
+#     api_url="https://detect.roboflow.com",
+#     api_key="Re2yQfbDiRNpNpjwoReH"
+# )
+
+#from inference_sdk import InferenceHTTPClient
+
 CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
     api_key="Re2yQfbDiRNpNpjwoReH"
 )
+
+#result = CLIENT.infer(your_image.jpg, model_id="skin-diseases-gynnb/1")
 
 @app.get('/index')
 def classifier_model():
